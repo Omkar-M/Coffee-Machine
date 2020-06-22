@@ -1,0 +1,9 @@
+type: code
+custom_name: What day is it?
+files:
+- name: task.py
+  visible: true
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/6526
+status: Solved
+record: -1
