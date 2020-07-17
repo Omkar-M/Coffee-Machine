@@ -85,7 +85,14 @@ files:
   learner_created: false
 - name: machine/coffee_machine.py
   visible: true
-  text: '# Write your code here'
+  text: |
+    print('''Starting to make a coffee
+    Grinding coffee beans
+    Boiling water
+    Mixing boiled water with crushed coffee beans
+    Pouring coffee into the cup
+    Pouring some milk into the cup
+    Coffee is ready!''')
   learner_created: true
 feedback_link: https://hyperskill.org/projects/68/stages/367/implement
 status: Solved

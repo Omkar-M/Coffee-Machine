@@ -1,135 +1,115 @@
-# Write your code here
+class CoffeeMachine:
+    def __init__(self):
+        self.water = 400
+        self.milk = 540
+        self.beans = 120
+        self.cups = 9
+        self.money = 550
+        self.state = "ready"
 
-# Define coffees available with resources needed
-espresso = {'coffee': 'espresso', 'water': 250, 'milk': 0, 'beans': 16, 'cost': 4}
-latte = {'coffee': 'latte', 'water': 350, 'milk': 75, 'beans': 20, 'cost': 7}
-cappuccino = {'coffee': 'cappuccino', 'water': 200, 'milk': 100, 'beans': 12, 'cost': 6}
-
-coffee_list = [espresso, latte, cappuccino]
-
-# Initial machine status.
-machine_status = {'money': 550, 'cups': 9, 'beans': 120, 'milk': 540, 'water': 400}
-
-
-def print_machine_menu():
-    print("")
-    while True:
-        print("Write action (b)uy, (f)ill, (t)ake, (r)emaining, (e)xit):")
-        selection = str(input("> ")).strip().lower()
-        if selection in ('fill', 'buy', 'take', 'remaining', 'exit',
-                         'f', 'b', 't', 'r', 'e'):
-            return selection
-        else:
-            print("Please enter a valid choice")
-
-
-def print_machine_status():
-    print("")
-    print("The coffee machine has:")
-    print(f'{machine_status["water"]} of water')
-    print(f'{machine_status["milk"]} of milk')
-    print(f'{machine_status["beans"]} of coffee beans')
-    print(f'{machine_status["cups"]} of disposable cups')
-    print(f'{machine_status["money"]} of money')
-
-
-def fill_machine():
-    print("Write how many ml of water do you want to add:")
-    machine_status['water'] += int(input("> "))
-
-    print("Write how many ml of milk do you want to add:")
-    machine_status['milk'] += int(input("> "))
-
-    print("Write how many grams of coffee beans do you want to add:")
-    machine_status['beans'] += int(input("> "))
-
-    print("Write how many disposable cups of coffee do you want to add:")
-    machine_status['cups'] += int(input("> "))
-
-
-def buy_coffee_menu():
-    print("")
-    while True:
-        print("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back:")
-        selection = str(input("> ")).strip().lower()
-
-        if selection in ('back', '1', '2', '3'):
-            selection = 0 if selection == 'back' else int(selection)
-            break
-        else:
-            print("Please enter a valid choice")
-
-    if selection > 0:
-        buy_a_coffee(selection)
-
-
-def buy_a_coffee(coffee_type):
-    """Check machine has the correct amount for the coffee selected
-    if the machine can make the coffee then do and update
-    else tell the operator what is too low
-
-    Argument: coffee_type(int): 1 latte, 2 esspresso, 3 cappucino
-    """
-    if coffee_type not in (1, 2, 3):
-        print("Please select a valid coffee")
-
-    selected = coffee_list[coffee_type - 1]
-    # Check machines capacity to make the coffee
-    print(selected)
-
-    anything_missing = []
-
-    if machine_status['water'] < selected['water']:
-        anything_missing.append("water")
-
-    if machine_status['milk'] < selected['milk']:
-        anything_missing.append("milk")
-
-    if machine_status['beans'] < selected['beans']:
-        anything_missing.append("coffee beans")
-
-    if machine_status['cups'] < 1:
-        anything_missing.append("disposable cups")
-
-    if len(anything_missing) > 0:
-        output = "Sorry, not enough"
-        for i in range(0, len(anything_missing)):
-            if i > 0:
-                output += ", " + anything_missing[i]
+    def action(self):
+        while self.state == "ready":
+            action = input("Write action (buy, fill, take, remaining, exit):\n> ")
+            if action == "buy":
+                self.buy()
+            elif action == "fill":
+                self.fill()
+            elif action == "take":
+                self.take()
+            elif action == "remaining":
+                self.remaining()
+            elif action == "exit":
+                break
             else:
-                output += " " + anything_missing[i]
-        print(output + "!")
-    else:
-        print("I have enough resources, making you a coffee!")
-        machine_status['water'] -= selected['water']
-        machine_status['milk'] -= selected['milk']
-        machine_status['beans'] -= selected['beans']
-        machine_status['cups'] -= 1
-        machine_status['money'] += selected['cost']
+                print("Try again!\n")
+
+    @classmethod
+    def print_enough(cls):
+        print("I have enough resources, making you a coffee!\n")
+
+    def buy(self):
+        print()
+        coffee = input("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu:\n>")
+        if coffee == "back":
+            return
+        else:
+            coffee = int(coffee)
+
+        if coffee == 1:
+            if self.water >= 250:
+                if self.milk >= 0:
+                    if self.beans >= 16:
+                        self.money += 4
+                        self.water -= 250
+                        self.beans -= 16
+                        self.cups -= 1
+                        CoffeeMachine.print_enough()
+                    else:
+                        print("Sorry, not enough coffee beans!\n")
+                else:
+                    print("Sorry, not enough milk!\n")
+            else:
+                print("Sorry, not enough water!\n")
+
+        elif coffee == 2:
+            if self.water >= 350:
+                if self.milk >= 75:
+                    if self.beans >= 20:
+                        self.money += 7
+                        self.water -= 350
+                        self.milk -= 75
+                        self.beans -= 20
+                        self.cups -= 1
+                        CoffeeMachine.print_enough()
+                    else:
+                        print("Sorry, not enough coffee beans!\n")
+                else:
+                    print("Sorry, not enough milk!\n")
+            else:
+                print("Sorry, not enough water!\n")
+
+        elif coffee == 3:
+            if self.water >= 200:
+                if self.milk >= 100:
+                    if self.beans >= 12:
+                        self.money += 6
+                        self.water -= 200
+                        self.milk -= 100
+                        self.beans -= 12
+                        self.cups -= 1
+                        CoffeeMachine.print_enough()
+                    else:
+                        print("Sorry, not enough coffee beans!\n")
+                else:
+                    print("Sorry, not enough milk!\n")
+            else:
+                print("Sorry, not enough water!\n")
+
+        else:
+            print("Try again!")
+
+    def fill(self):
+        print()
+        self.water += int(input("Write how many ml of water do you want to add:\n> "))
+        self.milk += int(input("Write how many ml of milk do you want to add:\n> "))
+        self.beans += int(input("Write how many grams of coffee beans do you want to add:\n> "))
+        self.cups += int(input("Write how many disposable cups of coffee do you want to add:\n> "))
+        print()
+
+    def take(self):
+        print()
+        print(f"I gave you ${self.money}\n")
+        self.money = 0
+
+    def remaining(self):
+        print()
+        print(f"The coffee machine has:\n"
+              f"{self.water} of water\n"
+              f"{self.milk} of milk\n"
+              f"{self.beans} of coffee beans\n"
+              f"{self.cups} of disposable cups\n"
+              f"${self.money} of money\n")
 
 
-def take_money():
-    print("")
-    print(f"I gave you ${machine_status['money']}")
-    machine_status['money'] = 0
-
-
-answer = print_machine_menu()
-
-while True:
-    if answer in ['exit', 'e']:
-        break
-
-    elif answer in ['fill', 'f']:
-        fill_machine()
-
-    elif answer in ['buy', 'b']:
-        buy_coffee_menu()
-
-    elif answer in ['take', 't']:
-        take_money()
-
-    elif answer in ['remaining', 'r']:
-        print_machine_status()
-
-    answer = print_machine_menu()
+coffee1 = CoffeeMachine()
+coffee1.action()
