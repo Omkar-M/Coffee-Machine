@@ -1,0 +1,20 @@
+type: code
+files:
+- name: task.py
+  visible: true
+  text: |-
+    # definition of the class
+    Class House():
+        construction = "building"
+        elevator = True
+
+    # object of the class House
+    new_house = House("building")
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/6665
+status: Solved
+feedback:
+  message: <html>Correct solution<br/><br/>Continue on <a href="https://hyperskill.org/learn/step/6665">JetBrains
+    Academy</a></html>
+  time: Mon, 13 Jul 2020 21:59:55 UTC
+record: -1

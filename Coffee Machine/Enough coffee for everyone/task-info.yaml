@@ -103,6 +103,10 @@ files:
     if __name__ == '__main__':
         CoffeeMachineTest('machine.coffee_machine').run_tests()
   learner_created: false
+- name: machine/coffee_machine.py
+  visible: true
+  text: '# Write your code here'
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/68/stages/368/implement
 status: Solved
 record: 3

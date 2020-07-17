@@ -59,12 +59,20 @@ topics:
   - title: Elif statement
     theory_id: 5926
   3:
+  - title: Computer programming
+    theory_id: 8739
+  - title: Intro to computational thinking
+    theory_id: 8742
+  - title: Components of computational thinking
+    theory_id: 8745
   - title: IDE
     theory_id: 3805
   - title: Declaring a function
     theory_id: 5900
   - title: Scopes
     theory_id: 6322
+  - title: Functional decomposition
+    theory_id: 9571
   - title: PyCharm basics
     theory_id: 6193
   4:
